@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Train Market (c1-c2)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
+            "args": [
+                "--dataroot", "~/datasets/market",
+                "--name", "market-c1-c2",
+                "--camA", "1",
+                "--camB", "2"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
