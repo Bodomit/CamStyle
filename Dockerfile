@@ -19,4 +19,4 @@ ENV RESULTS_DIR=/results
 
 # Default to training the market.
 WORKDIR /src/CycleGAN-for-CamStyle
-CMD ./train_market.sh
+CMD ./train_mmf.sh
