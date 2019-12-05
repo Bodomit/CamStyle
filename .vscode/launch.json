@@ -5,30 +5,45 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Train Market (c1-c2)",
+            "name": "Python: CycleGAN-Train Market (c1-c2)",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
             "args": [
                 "--dataroot", "~/datasets/market",
                 "--name", "market-c1-c2",
-                "--checkpoints_dir", "~/results/camstyle_market_cyclegans/",
+                "--checkpoints_dir", "~/results/camstyle_market_cyclegans_train/",
                 "--camA", "1",
                 "--camB", "2"
             ],
             "console": "integratedTerminal"
         },
         {
-            "name": "Python: Train MMF (A-B)",
+            "name": "Python: CycleGAN-Train MMF (A-B)",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
             "args": [
                 "--dataroot", "~/datasets/mmf",
                 "--name", "mmf-A-B",
-                "--checkpoints_dir", "~/results/camstyle_mmf_cyclegans/",
+                "--checkpoints_dir", "~/results/camstyle_mmf_cyclegans_train/",
                 "--dataset_mode", "unaligned",
                 "--phase", ""
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: CycleGAN-Test Market (c1-c2)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/test.py",
+            "args": [
+                "--dataroot", "~/datasets/market",
+                "--name", "market-c1-c2",
+                "--checkpoints_dir", "~/results/camstyle_market_cyclegans_train/",
+                "--save_root", "~/results/camstyle_market_cyclegans_test/",
+                "--camA", "1",
+                "--camB", "2"
             ],
             "console": "integratedTerminal"
         }

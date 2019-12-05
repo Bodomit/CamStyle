@@ -15,4 +15,4 @@ fi
 echo $ROOT_DATASET_DIR
 echo $RESULTS_DIR
 
-python train.py --dataroot $ROOT_DATASET_DIR/mmf --name mmf-A-B --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_mmf_cyclegans/
+python train.py --dataroot $ROOT_DATASET_DIR/mmf --name mmf-A-B --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_mmf_cyclegans_train/
