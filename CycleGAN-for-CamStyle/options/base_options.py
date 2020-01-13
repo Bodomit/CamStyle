@@ -43,8 +43,9 @@ class BaseOptions():
         parser.add_argument('--init_type', type=str, default='normal', help='network initialization [normal|xavier|kaiming|orthogonal]')
         parser.add_argument('--verbose', action='store_true', help='if specified, print more debugging information')
         parser.add_argument('--suffix', default='', type=str, help='customized suffix: opt.name = opt.name + suffix: e.g., {model}_{which_model_netG}_size{loadSize}')
-        parser.add_argument('--camA', type=int, default=1, help='cam A.')
-        parser.add_argument('--camB', type=int, default=2, help='cam B.')
+        parser.add_argument('--camA', default=None, help='cam A.')
+        parser.add_argument('--camB', default=None, help='cam B.')
+        parser.add_argument('--debug', action='store_true', help='If set, runs everything sequentially to aid with debugging.')
         self.initialized = True
         return parser
 

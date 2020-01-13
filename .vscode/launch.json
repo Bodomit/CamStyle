@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Python: CycleGAN-Train Market (c1-c2)",
             "type": "python",
@@ -14,21 +15,25 @@
                 "--name", "market-c1-c2",
                 "--checkpoints_dir", "~/results/camstyle_market_cyclegans_train/",
                 "--camA", "1",
-                "--camB", "2"
+                "--camB", "2",
+                "--debug"
             ],
             "console": "integratedTerminal"
         },
         {
-            "name": "Python: CycleGAN-Train MMF (A-B)",
+            "name": "Python: CycleGAN-Train MMF6 (A-B)",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
             "args": [
-                "--dataroot", "~/datasets/mmf",
-                "--name", "mmf-A-B",
+                "--dataroot", "~/datasets/mmf6",
+                "--name", "mmf6-A-B",
+                "--camA", "A",
+                "--camB", "B",
                 "--checkpoints_dir", "~/results/camstyle_mmf_cyclegans_train/",
                 "--dataset_mode", "unaligned",
-                "--phase", ""
+                "--phase", "",
+                "--debug"
             ],
             "console": "integratedTerminal"
         },
@@ -43,7 +48,26 @@
                 "--checkpoints_dir", "~/results/camstyle_market_cyclegans_train/",
                 "--save_root", "~/results/camstyle_market_cyclegans_test/",
                 "--camA", "1",
-                "--camB", "2"
+                "--camB", "2",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: CycleGAN-Test MMF (A-B)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/test.py",
+            "args": [
+                "--dataroot", "~/datasets/mmf6",
+                "--name", "mmf6-A-B",
+                "--camA", "A",
+                "--camB", "B",
+                "--checkpoints_dir", "~/results/camstyle_mmf_cyclegans_train/",
+                "--save_root", "~/results/camstyle_mmf_cyclegans_gen/",
+                "--dataset_mode", "unaligned",
+                "--phase", "",
+                "--debug"
             ],
             "console": "integratedTerminal"
         }

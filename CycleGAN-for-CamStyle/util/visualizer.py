@@ -32,8 +32,9 @@ def save_images(visuals, image_path, camA=1, camB=2, save_root=None):
         if label in ('rec_A', 'rec_B', 'real_A', 'real_B'):
             continue
         import re
-        pattern = re.compile(r'([-\d]+)_c(\d)')
-        pid, cam = map(int, pattern.search(name).groups())
+        #pattern = re.compile(r'([-\d]+)_c(\d)')
+        pattern = re.compile(r'^([\d]+)_([\w])_')
+        pid, cam = pattern.search(name).groups()
         print(name, cam)
 
         if not (cam == camA and label == 'fake_B') and not (cam == camB and label == 'fake_A'):
