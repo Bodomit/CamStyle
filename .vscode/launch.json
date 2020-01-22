@@ -70,6 +70,20 @@
                 "--debug"
             ],
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Reid MMF (No Camstyle)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args": [
+                "--data-dir", "~/datasets",
+                "-d", "mmf6",
+                "--logs-dir", "~/logs/cycleganreidmmf",
+                "--camstyle_path", "~/datasets/camstyle_mmf_cyclegans_gen",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
         }
     ]
 }

@@ -20,10 +20,10 @@ from reid.utils.logging import Logger
 from reid.utils.serialization import load_checkpoint, save_checkpoint
 
 
-def get_data(dataname, data_dir, height, width, batch_size, camstyle=0, re=0, workers=8):
+def get_data(dataname, data_dir, height, width, batch_size, camstyle=0, re=0, workers=8, camstyle_path=None):
     root = osp.join(data_dir, dataname)
 
-    dataset = datasets.create(dataname, root)
+    dataset = datasets.create(dataname, root, camstyle_path=camstyle_path)
 
     normalizer = T.Normalize(mean=[0.485, 0.456, 0.406],
                              std=[0.229, 0.224, 0.225])
@@ -45,20 +45,17 @@ def get_data(dataname, data_dir, height, width, batch_size, camstyle=0, re=0, wo
     ])
 
     train_loader = DataLoader(
-        Preprocessor(dataset.train, root=osp.join(dataset.images_dir, dataset.train_path),
-                     transform=train_transformer),
+        Preprocessor(dataset.train, root=None, transform=train_transformer),
         batch_size=batch_size, num_workers=workers,
         shuffle=True, pin_memory=True, drop_last=True)
 
     query_loader = DataLoader(
-        Preprocessor(dataset.query,
-                     root=osp.join(dataset.images_dir, dataset.query_path), transform=test_transformer),
+        Preprocessor(dataset.query, root=None, transform=test_transformer),
         batch_size=batch_size, num_workers=workers,
         shuffle=False, pin_memory=True)
 
     gallery_loader = DataLoader(
-        Preprocessor(dataset.gallery,
-                     root=osp.join(dataset.images_dir, dataset.gallery_path), transform=test_transformer),
+        Preprocessor(dataset.gallery, root=None, transform=test_transformer),
         batch_size=batch_size, num_workers=workers,
         shuffle=False, pin_memory=True)
     
@@ -66,8 +63,7 @@ def get_data(dataname, data_dir, height, width, batch_size, camstyle=0, re=0, wo
         camstyle_loader = None
     else:
         camstyle_loader = DataLoader(
-            Preprocessor(dataset.camstyle, root=osp.join(dataset.images_dir, dataset.camstyle_path),
-                         transform=train_transformer),
+            Preprocessor(dataset.camstyle, root=None, transform=train_transformer),
             batch_size=camstyle, num_workers=workers,
             shuffle=True, pin_memory=True, drop_last=True)
 
@@ -83,7 +79,9 @@ def main(args):
     # Create data loaders
     dataset, num_classes, train_loader, query_loader, gallery_loader, camstyle_loader = \
         get_data(args.dataset, args.data_dir, args.height,
-                 args.width, args.batch_size, args.camstyle, args.re, args.workers)
+                 args.width, args.batch_size, args.camstyle, args.re,
+                 0 if args.debug else args.workers,
+                 camstyle_path = args.camstyle_path)
 
     # Create model
     model = models.create(args.arch, num_features=args.features,
@@ -197,5 +195,9 @@ if __name__ == '__main__':
     parser.add_argument('--camstyle', type=int, default=0)
     #  perform re-ranking
     parser.add_argument('--rerank', action='store_true', help="perform re-ranking")
+
+    # Custom
+    parser.add_argument("--camstyle_path", type=str, metavar='PATH')
+    parser.add_argument("--debug", action='store_true')
 
     main(parser.parse_args())

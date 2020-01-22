@@ -7,7 +7,7 @@ from .mmf import MMF
 __factory = {
     'market': Market,
     'duke': Duke,
-    'mmf': MMF
+    'mmf6': MMF
 }
 
 
