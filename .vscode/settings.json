@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "/home/40057686/anaconda3/envs/camstyle/bin/python"
+    "python.pythonPath": "/home/40057686/anaconda3/envs/camstyle/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.mypyEnabled": false,
+    "python.linting.pycodestyleEnabled": false,
+    "python.linting.enabled": true
 }

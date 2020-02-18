@@ -4,18 +4,19 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
-            "name": "Python: CycleGAN-Train Market (c1-c2)",
+            "name": "Python: CycleGAN-Train VGGFace2 (1-2)",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
             "args": [
-                "--dataroot", "~/datasets/market",
-                "--name", "market-c1-c2",
-                "--checkpoints_dir", "~/results/camstyle_market_cyclegans_train/",
+                "--dataroot", "~/datasets/vggface2",
+                "--name", "vggface2-c1-c2",
+                "--checkpoints_dir", "~/results/camstyle_vggface2_cyclegans_train/",
                 "--camA", "1",
                 "--camB", "2",
+                "--dataset_mode", "unaligned",
+                "--phase", "",
                 "--debug"
             ],
             "console": "integratedTerminal"
@@ -33,22 +34,6 @@
                 "--checkpoints_dir", "~/results/camstyle_mmf_cyclegans_train/",
                 "--dataset_mode", "unaligned",
                 "--phase", "",
-                "--debug"
-            ],
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "Python: CycleGAN-Test Market (c1-c2)",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/test.py",
-            "args": [
-                "--dataroot", "~/datasets/market",
-                "--name", "market-c1-c2",
-                "--checkpoints_dir", "~/results/camstyle_market_cyclegans_train/",
-                "--save_root", "~/results/camstyle_market_cyclegans_test/",
-                "--camA", "1",
-                "--camB", "2",
                 "--debug"
             ],
             "console": "integratedTerminal"
