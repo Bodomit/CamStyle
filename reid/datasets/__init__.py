@@ -2,12 +2,14 @@ from __future__ import absolute_import
 from .duke import Duke
 from .market import Market
 from .mmf import MMF
+from .vggface2_pose import VGGFace2Pose
 
 
 __factory = {
     'market': Market,
     'duke': Duke,
-    'mmf6': MMF
+    'mmf6': MMF,
+    "vggface2_pose": VGGFace2Pose
 }
 
 
