@@ -4,7 +4,23 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "name": "Python: CycleGAN-Train VGGFace2_Pose (102-114)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
+            "args": [
+                "--dataroot", "~/datasets/vggface2_pose5",
+                "--name", "vggface2_pose-102-114",
+                "--checkpoints_dir", "~/results/camstyle_vggface2_pose_cyclegans_train/",
+                "--camA", "102",
+                "--camB", "114",
+                "--dataset_mode", "unaligned",
+                "--phase", "train",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
+        },
         {
             "name": "Python: CycleGAN-Train Market (c1-c2)",
             "type": "python",
