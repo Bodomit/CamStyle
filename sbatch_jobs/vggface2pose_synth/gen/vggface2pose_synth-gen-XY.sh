@@ -12,6 +12,9 @@ conda activate camstyle1
 
 nvidia-smi
 
+ROOT_DATASET_DIR=~/datasets
+RESULTS_DIR=~/results
+
 echo $ROOT_DATASET_DIR
 echo $RESULTS_DIR
 
@@ -19,5 +22,6 @@ echo "camA=$camA"
 echo "camB=$camB"
 
 cd ./CycleGAN-for-CamStyle && pwd
-python test.py --dataroot $ROOT_DATASET_DIR/vggface2pose_synth --name "vggface2pose_synth-$camA-$camB" --camA $camA --camB $camB --save_root ~/sharedscratch/camstyle_vggface2pose_synth_cyclegans_gen --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_vggface2pose_synth_cyclegans_train/
+
+python train.py --dataroot $ROOT_DATASET_DIR/vggface2pose_synth --name "vggface2pose_synth-$camA-$camB" --camA $camA --camB $camB --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_vggface2pose_synth_cyclegans_train/
 
