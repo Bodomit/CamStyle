@@ -59,5 +59,6 @@ dependencies:
     - visdom==0.1.8.9
     - websocket-client==0.56.0
     - wrapt==1.11.2
+    - tqdm
 prefix: /home/40057686/anaconda3/envs/camstyle
 
