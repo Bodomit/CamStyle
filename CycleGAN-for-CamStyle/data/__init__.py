@@ -17,7 +17,7 @@ def CreateDataset(opt):
     elif opt.dataset_mode == 'unaligned':
         from data.unaligned_dataset import UnalignedDataset
         dataset = UnalignedDataset()
-    elif opt.data_mode == 'unaligned_filters':
+    elif opt.dataset_mode == 'unaligned_filtered':
         from data.unaligned_dataset import UnalignedFilteredDataset
         dataset = UnalignedFilteredDataset()
     elif opt.dataset_mode == 'single':

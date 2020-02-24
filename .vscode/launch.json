@@ -18,7 +18,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
             "args": [
-                "--dataroot", "~/datasets/vggface2pose_synth",
+                "--dataroot", "~/datasets/synthpose",
                 "--name", "vggface2pose_synth-cA-c1_debug",
                 "--checkpoints_dir", "~/results/camstyle_vggface2pose_synth_cyclegans_train_debug/",
                 "--camA", "A",
@@ -26,6 +26,25 @@
                 "--phase", "",
                 "--dataset_mode", "unaligned_filtered",
                 "--filter-dataset", "camB",
+                "--path-filter", ".+_256.png$",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: CycleGAN-Train Synth",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
+            "args": [
+                "--dataroot", "~/datasets/synth/train",
+                "--name", "synth_debug",
+                "--checkpoints_dir", "~/results/camstyle_synth_cyclegans_train_debug/",
+                "--camA", "01746",
+                "--camB", "01743",
+                "--phase", "",
+                "--dataset_mode", "unaligned_filtered",
+                "--filter-dataset", "Both",
                 "--path-filter", ".+_256.png$",
                 "--debug"
             ],
