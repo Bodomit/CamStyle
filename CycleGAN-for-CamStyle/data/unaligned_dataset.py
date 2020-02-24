@@ -3,6 +3,7 @@ from data.base_dataset import BaseDataset, get_transform
 from data.image_folder import make_dataset
 from PIL import Image
 import random
+import re
 
 
 class UnalignedDataset(BaseDataset):
@@ -64,3 +65,20 @@ class UnalignedDataset(BaseDataset):
         if cam:
             path= os.path.join(path, cam)
         return path
+
+
+class UnalignedFilteredDataset(UnalignedDataset):
+    def initialize(self, opt):
+        super.initialize(opt)
+
+        if opt.filter_dataset == "camA" or opt.filter_dataset == "Both":
+            self.A_paths = self._filter(self.A_paths, opt.path_filter)
+        if opt.filter_dataset == "camB" or opt.filter_dataset == "Both":
+            self.B_paths = self._filter(self.B_paths, opt.path_filter)
+
+        self.A_size = len(self.A_paths)
+        self.B_size = len(self.B_paths)
+
+    def _filter(self, paths, filter):
+        pattern = re.compile(filter)
+        return [p for p in paths if pattern.match(p)]

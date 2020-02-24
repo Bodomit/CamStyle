@@ -23,7 +23,9 @@ class BaseOptions():
         parser.add_argument('--n_layers_D', type=int, default=3, help='only used if which_model_netD==n_layers')
         parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
         parser.add_argument('--name', type=str, default='experiment_name', help='name of the experiment. It decides where to store samples and models')
-        parser.add_argument('--dataset_mode', type=str, default='reid', help='chooses how datasets are loaded. [unaligned | aligned | single]')
+        parser.add_argument('--dataset_mode', type=str, default='reid', help='chooses how datasets are loaded. [unaligned | unaligned_filtered | aligned | single]')
+        parser.add_argument('--filter-dataset', type=str, default=None, help="Which dataset to filter.")
+        parser.add_argument('--path-filter', type=str, default=None, help="Filters the paths in unaligned_filterd datasets")
         parser.add_argument('--model', type=str, default='cycle_gan',
                                  help='chooses which model to use. cycle_gan, pix2pix, test')
         parser.add_argument('--which_direction', type=str, default='AtoB', help='AtoB or BtoA')

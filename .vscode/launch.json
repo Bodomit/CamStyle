@@ -4,11 +4,31 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
             "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: CycleGAN-Train VGGFace2Pose (cA-c1)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
+            "args": [
+                "--dataroot", "~/datasets/vggface2pose_synth",
+                "--name", "vggface2pose_synth-cA-c1_debug",
+                "--checkpoints_dir", "~/results/camstyle_vggface2pose_synth_cyclegans_train_debug/",
+                "--camA", "A",
+                "--camB", "1",
+                "--phase", "",
+                "--dataset_mode", "unaligned_filtered",
+                "--filter-dataset", "camB",
+                "--path-filter", ".+_256.png$",
+                "--debug"
+            ],
             "console": "integratedTerminal"
         },
         {
