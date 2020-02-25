@@ -23,5 +23,5 @@ echo "camB=$camB"
 
 cd ./CycleGAN-for-CamStyle && pwd
 
-python train.py --dataroot $ROOT_DATASET_DIR/vggface2pose_synth --name "vggface2pose_synth-$camA-$camB" --camA $camA --camB $camB --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_vggface2pose_synth_cyclegans_train/
+python train.py --dataroot $ROOT_DATASET_DIR/vggface2pose_synth --name "vggface2pose_synth-$camA-$camB" --camA $camA --camB $camB --dataset_mode unaligned --phase "" --no_flip --checkpoints_dir $RESULTS_DIR/camstyle_vggface2pose_synth_cyclegans_train/
 
