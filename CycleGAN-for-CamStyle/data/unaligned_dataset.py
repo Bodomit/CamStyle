@@ -71,9 +71,9 @@ class UnalignedFilteredDataset(UnalignedDataset):
     def initialize(self, opt):
         super().initialize(opt)
 
-        if opt.filter_dataset == "camA" or opt.filter_dataset == "Both":
+        if opt.filter_dataset == "camA" or str(opt.filter_dataset).lower() == "both":
             self.A_paths = self._filter(self.A_paths, opt.path_filter)
-        if opt.filter_dataset == "camB" or opt.filter_dataset == "Both":
+        if opt.filter_dataset == "camB" or str(opt.filter_dataset).lower() == "both":
             self.B_paths = self._filter(self.B_paths, opt.path_filter)
 
         self.A_size = len(self.A_paths)
