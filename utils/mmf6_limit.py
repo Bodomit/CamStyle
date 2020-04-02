@@ -3,8 +3,7 @@
 import os
 import glob
 import argparse
-import shutil
-import re
+import random
 
 from itertools import groupby, islice
 from collections import defaultdict
@@ -18,7 +17,7 @@ def main(directory: str, n: int):
     images_to_keep : Set[str] = set()
 
     for _, g in groupby(sorted(all_images), key=lambda x:os.path.dirname(x)):
-        images_to_keep.update(islice(g, 10))
+        images_to_keep.update(random.choices(list(g), k=10))
 
     images_to_delete = all_images - images_to_keep
 
