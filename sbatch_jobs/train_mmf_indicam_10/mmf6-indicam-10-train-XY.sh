@@ -31,5 +31,5 @@ echo "camA=$camA"
 echo "camB=$camB"
 
 cd ./CycleGAN-for-CamStyle && pwd
-python train.py --dataroot $ROOT_DATASET_DIR/mmf6-indiecam-10 --name "mmf6-indicam-10-$camA-$camB" --camA $camA --camB $camB --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_mmf6_indicam_10_cyclegans_train/ --niter 50 --niter_decay 50
+python train.py --dataroot $ROOT_DATASET_DIR/mmf6-indicam-10 --name "mmf6-indicam-10-$camA-$camB" --camA $camA --camB $camB --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_mmf6_indicam_10_cyclegans_train/ --niter 50 --niter_decay 50
 
