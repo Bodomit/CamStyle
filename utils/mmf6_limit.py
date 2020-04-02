@@ -5,9 +5,8 @@ import glob
 import argparse
 import random
 
-from itertools import groupby, islice
-from collections import defaultdict
-from typing import Dict, List, Set, Tuple
+from itertools import groupby
+from typing import Set
 
 
 def main(directory: str, n: int):
