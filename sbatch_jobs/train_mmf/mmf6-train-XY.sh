@@ -1,5 +1,5 @@
 #!/bin/env bash
-#SBATCH --job-name=CAMStyle-TrainCyclesMMF
+#SBATCH --job-name=CAMStyle-MMFIndieCAm
 #SBATCH --partition=gpu
 #SBATCH --ntasks=4
 #SBATCH --mem-per-cpu=16G
@@ -19,7 +19,7 @@ else
 fi
 
 if [ -z "${RESULTS_DIR}" ]; then 
-    RESULTS_DIR=~/results
+    RESULTS_DIR=~/sharedscratch/results
 else 
     RESULTS_DIR=${RESULTS_DIR}
 fi
@@ -31,5 +31,5 @@ echo "camA=$camA"
 echo "camB=$camB"
 
 cd ./CycleGAN-for-CamStyle && pwd
-python train.py --dataroot $ROOT_DATASET_DIR/mmf6 --name "mmf6-$camA-$camB" --camA $camA --camB $camB --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_mmf_cyclegans_train/ --niter 5 --niter_decay 0
+python train.py --dataroot $ROOT_DATASET_DIR/mmf6-indiecam --name "mmf6-$camA-$camB" --camA $camA --camB $camB --dataset_mode unaligned --phase "" --checkpoints_dir $RESULTS_DIR/camstyle_mmf_cyclegans_train/ --niter 5 --niter_decay 0
 
