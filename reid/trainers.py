@@ -109,7 +109,7 @@ class CamStyleTrainer(object):
             camstyle_inputs, camstyle_targets = self._parse_data(camstyle_inputs)
             loss, prec1 = self._forward(inputs, targets, camstyle_inputs, camstyle_targets)
 
-            losses.update(loss.data[0], targets.size(0))
+            losses.update(loss.data.item(), targets.size(0))
             precisions.update(prec1, targets.size(0))
 
             optimizer.zero_grad()

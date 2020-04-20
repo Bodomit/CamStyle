@@ -21,7 +21,11 @@ from reid.utils.serialization import load_checkpoint, save_checkpoint
 
 
 def get_data(dataname, data_dir, height, width, batch_size, camstyle=0, re=0, workers=8, camstyle_path=None):
-    root = osp.join(data_dir, dataname)
+
+    if dataname in ["mmf6-indicam", "mmf6-indicam-10", "mmf6-pairs", "mmf6-pairs-10"]:
+        root = osp.join(data_dir, "mmf6")
+    else:
+        root = osp.join(data_dir, dataname)
 
     dataset = datasets.create(dataname, root, camstyle_path=camstyle_path)
 
@@ -98,7 +102,7 @@ def main(args):
     model = nn.DataParallel(model).cuda()
 
     # Evaluator
-    evaluator = Evaluator(model)
+    evaluator = Evaluator(model, args.logs_dir)
     if args.evaluate:
         print("Test:")
         evaluator.evaluate(query_loader, gallery_loader, dataset.query, dataset.gallery, args.output_feature, args.rerank)
@@ -148,7 +152,7 @@ def main(args):
 
     # Final test
     print('Test with best model:')
-    evaluator = Evaluator(model)
+    evaluator = Evaluator(model, args.logs_dir)
     evaluator.evaluate(query_loader, gallery_loader, dataset.query, dataset.gallery, args.output_feature, args.rerank)
 
 

@@ -3,8 +3,14 @@ import time
 from collections import OrderedDict
 import pdb
 
+import pickle
+import os 
+
 import torch
 import numpy as np
+
+from scipy.spatial.distance import cdist
+
 
 from .evaluation_metrics import cmc, mean_ap
 from .utils.meters import AverageMeter
@@ -56,21 +62,24 @@ def extract_features(model, data_loader, print_freq=1, output_feature=None):
 
 
 def pairwise_distance(query_features, gallery_features, query=None, gallery=None):
-    x = torch.cat([query_features[f].unsqueeze(0) for f, _, _ in query], 0)
-    y = torch.cat([gallery_features[f].unsqueeze(0) for f, _, _ in gallery], 0)
-    m, n = x.size(0), y.size(0)
-    x = x.view(m, -1)
-    y = y.view(n, -1)
-    dist = torch.pow(x, 2).sum(dim=1, keepdim=True).expand(m, n) + \
-            torch.pow(y, 2).sum(dim=1, keepdim=True).expand(n, m).t()
-    dist.addmm_(1, -2, x, y.t())
-    return dist
+    x = np.stack([to_numpy(query_features[f]) for f, _, _ in query])
+    y = np.stack([to_numpy(gallery_features[f]) for f, _, _ in gallery])
+
+    print("X:")
+    print(x)
+    print()
+    print("Y:")
+    print(y)
+    print("distmat:")
+    distmat =  cdist(x, y)
+    print(distmat)
+    return distmat
 
 
 def evaluate_all(distmat, query=None, gallery=None,
                  query_ids=None, gallery_ids=None,
                  query_cams=None, gallery_cams=None,
-                 cmc_topk=(1, 5, 10, 20)):
+                 cmc_topk=tuple(range(1,21))):
     if query is not None and gallery is not None:
         query_ids = [pid for _, pid, _ in query]
         gallery_ids = [pid for _, pid, _ in gallery]
@@ -173,15 +182,39 @@ def reranking(query_features, gallery_features, query=None, gallery=None, k1=20,
 
 
 class Evaluator(object):
-    def __init__(self, model):
+    def __init__(self, model, logs_dir):
         super(Evaluator, self).__init__()
         self.model = model
+        self.logs_dir = logs_dir
 
     def evaluate(self, query_loader, gallery_loader, query, gallery, output_feature=None, rerank=False):
         query_features, _ = extract_features(self.model, query_loader, 1, output_feature)
         gallery_features, _ = extract_features(self.model, gallery_loader, 1, output_feature)
+
+        features_path = os.path.join(self.logs_dir, "features")
+        os.makedirs(features_path, exist_ok=True)
+
+        print(features_path)
+        with open(os.path.join(features_path, "query_features.pickle"), "wb") as outfile:
+            pickle.dump(query_features, outfile)
+
+        with open(os.path.join(features_path, "query.pickle"), "wb") as outfile:
+            pickle.dump(query, outfile)
+
+        with open(os.path.join(features_path, "gallery_features.pickle"), "wb") as outfile:
+            pickle.dump(gallery_features, outfile)
+        
+        with open(os.path.join(features_path, "gallery.pickle"), "wb") as outfile:
+            pickle.dump(gallery, outfile)
+
         if rerank:
+            print("Reranking.")
             distmat = reranking(query_features, gallery_features, query, gallery)
         else:
+            print("Pairwise Distance")
             distmat = pairwise_distance(query_features, gallery_features, query, gallery)
+        
+        with open(os.path.join(features_path, "distmat.pickle"), "wb") as outfile:
+            pickle.dump(distmat, outfile)
+
         return evaluate_all(distmat, query=query, gallery=gallery)
