@@ -4,7 +4,23 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "name": "Gen: MMF6-Pairs-10-Ato1-Bidi",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/test.py",
+            "args": [
+                "--dataroot", "/home/40057686/datasets/mmf6-pairs-10",
+                "--name", "mmf6-pairs-10-A-1",
+                "--camA", "A",
+                "--camB", "1",
+                "--save_root", "/home/40057686/results/debug/camstyle_mmf6_pairs_10_gen_bidi",
+                "--dataset_mode", "unaligned",
+                "--phase", "",
+                "--checkpoints_dir", "/home/40057686/results/camstyle_mmf6_pairs_10_cyclegans_train"
+            ],
+            "console": "integratedTerminal"
+        },
         {
             "name": "Python: CycleGAN-Train Market (c1-c2)",
             "type": "python",

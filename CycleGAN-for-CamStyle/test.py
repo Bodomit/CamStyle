@@ -26,7 +26,7 @@ if __name__ == '__main__':
         model.set_input(data)
         model.test()
         visuals = model.get_current_visuals()
-        img_path = model.get_image_paths()
         if i % 5 == 0:
-            print('processing (%04d)-th image... %s' % (i, img_path))
-        save_images(visuals, img_path, opt.camA, opt.camB, opt.save_root)
+            print('processing (%04d)-th image.' % (i))
+        for img_path in set.union(set(data["A_paths"]), set(data["B_paths"])):
+            save_images(visuals, [img_path], opt.camA, opt.camB, opt.save_root)
