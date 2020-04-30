@@ -100,6 +100,17 @@
                 "--debug"
             ],
             "console": "integratedTerminal"
+        },
+        {
+            "name": "MMF6 Test Sep",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/mmf6_test-sep.py",
+            "args": [
+                "/users/40057686/sharedscratch/datasets/mmf6-test",
+                "--dry-run"
+            ],
+            "console": "integratedTerminal"
         }
     ]
 }

@@ -7,8 +7,6 @@ import random
 
 class MMF:
     def __init__(self, root, camstyle_path=None, total_cv_folds=11, cv_fold=0):
-
-        assert camstyle_path is not None
         
         self.total_cv_folds = total_cv_folds
         self.cv_fold = cv_fold
@@ -81,9 +79,13 @@ class MMF:
         self.gallery, self.num_gallery_ids, _ = self.preprocess(file_names, self.gallery_cams, self.test_ids, False)
         self.query, self.num_query_ids, _ = self.preprocess(file_names, self.probe_cams, self.test_ids, False)
 
-        camstyle_fnames = self.parse_names(sorted(glob.glob(os.path.join(self.camstyle_path, "*.*"))))
-        self.camstyle, self.num_camstyle_ids, _ = self.preprocess(camstyle_fnames, None, self.train_ids, True)
-        self.assert_ids()
+        if self.camstyle_path is not None:
+            camstyle_fnames = self.parse_names(sorted(glob.glob(os.path.join(self.camstyle_path, "*.*"))))
+            self.camstyle, self.num_camstyle_ids, _ = self.preprocess(camstyle_fnames, None, self.train_ids, True)
+            self.assert_ids()
+        else:
+            self.camstyle = None
+            self.num_camstyle_ids = None
 
     def assert_ids(self):
         train_ids = set([pid for _, pid, _ in self.train])
