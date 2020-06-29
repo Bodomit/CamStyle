@@ -24,25 +24,25 @@ python train.py --dataroot ~/sharedscratch/datasets/Market-1501-v15.09.15 \
 python test.py --dataroot ~/sharedscratch/datasets/Market-1501-v15.09.15 \
                --name "market-c$camA-c$camB" --camA $camA --camB $camB \
                --save_root ~/sharedscratch/results/camstyle_gen_market/ \
-               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/
+               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/ \
                --subset bounding_box_train
 
 python test.py --dataroot ~/sharedscratch/datasets/Market-1501-v15.09.15 \
                --name "market-c$camA-c$camB" --camA $camA --camB $camB \
                --save_root ~/sharedscratch/results/camstyle_gen_market/ \
-               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/
+               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/ \
                --subset bounding_box_test
 
 python test.py --dataroot ~/sharedscratch/datasets/Market-1501-v15.09.15 \
                --name "market-c$camA-c$camB" --camA $camA --camB $camB \
                --save_root ~/sharedscratch/results/camstyle_gen_market/ \
-               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/
+               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/ \
                --subset query
 
 python test.py --dataroot ~/sharedscratch/datasets/Market-1501-v15.09.15 \
                --name "market-c$camA-c$camB" --camA $camA --camB $camB \
                --save_root ~/sharedscratch/results/camstyle_gen_market/ \
-               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/
+               --checkpoints_dir ~/sharedscratch/results/camstyle_train_market/ \
                --subset gt_bbox
 
 

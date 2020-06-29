@@ -28,8 +28,8 @@ def main(directory: str, dry_run: bool):
     print("Images to delete: {}".format(len(images_to_delete)))
 
     if not dry_run:
-        for dir in images_to_delete:
-            shutil.rmtree(dir, ignore_errors=True)
+        for path in images_to_delete:
+            os.remove(path)
 
 
 if __name__ == "__main__":
