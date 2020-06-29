@@ -27,11 +27,27 @@
             "request": "launch",
             "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
             "args": [
-                "--dataroot", "~/datasets/market",
+                "--dataroot", "D:\\datasets\\Market-1501-v15.09.15",
                 "--name", "market-c1-c2",
-                "--checkpoints_dir", "~/results/camstyle_market_cyclegans_train/",
+                "--checkpoints_dir", "D:\\results\\debug\\camstyle_train_market",
                 "--camA", "1",
                 "--camB", "2",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: CycleGAN-Gen Market (c1-c2)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/test.py",
+            "args": [
+                "--dataroot", "D:\\datasets\\Market-1501-v15.09.15",
+                "--name", "market-c1-c2",
+                "--checkpoints_dir", "D:\\results\\debug\\camstyle_train_market",
+                "--camA", "1",
+                "--camB", "2",
+                "--subset", "query",
                 "--debug"
             ],
             "console": "integratedTerminal"

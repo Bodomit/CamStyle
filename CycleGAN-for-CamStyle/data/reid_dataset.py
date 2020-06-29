@@ -12,14 +12,15 @@ class ReidDataset(BaseDataset):
     def initialize(self, opt):
         self.opt = opt
         self.root = opt.dataroot
-        self.dir = os.path.join(opt.dataroot, 'bounding_box_train')
+        self.subset = opt.subset if opt.subset else 'bounding_box_train'
+        self.dir = os.path.join(opt.dataroot, self.subset)
 
         if self.opt.isTrain:
-            self.A_paths = self.preprocess(self.dir, cam_id=opt.camA)
-            self.B_paths = self.preprocess(self.dir, cam_id=opt.camB)
+            self.A_paths = self.preprocess(self.dir, cam_id=int(opt.camA))
+            self.B_paths = self.preprocess(self.dir, cam_id=int(opt.camB))
         else:
-            self.A_paths = self.preprocess(self.dir, cam_id=opt.camA, extra_cam_id=opt.camB)
-            self.B_paths = self.preprocess(self.dir, cam_id=opt.camA, extra_cam_id=opt.camB)
+            self.A_paths = self.preprocess(self.dir, cam_id=int(opt.camA), extra_cam_id=opt.camB)
+            self.B_paths = self.preprocess(self.dir, cam_id=int(opt.camA), extra_cam_id=opt.camB)
 
         self.A_size = len(self.A_paths)
         self.B_size = len(self.B_paths)
