@@ -1,0 +1,1 @@
+sbatch --export=ALL,camA=1,camB=2 ./sbatch_jobs/market/train_market_XY.sh

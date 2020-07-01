@@ -18,7 +18,7 @@ def mkdir_if_missing(dir_path):
 
 
 # save image to the disk
-def save_images(visuals, image_path, camA=1, camB=2, save_root=None):
+def save_images(visuals, image_path, camA=1, camB=2, save_root=None, fname_pattern=r'^([\d]+)_([\w])_)'):
     mkdir_if_missing(save_root)
     short_path = ntpath.basename(image_path[0])
     name = os.path.splitext(short_path)[0]
@@ -33,7 +33,7 @@ def save_images(visuals, image_path, camA=1, camB=2, save_root=None):
             continue
         import re
         #pattern = re.compile(r'([-\d]+)_c(\d)')
-        pattern = re.compile(r'^([\d]+)_([\w])_')
+        pattern = re.compile(fname_pattern)
         pid, cam = pattern.search(name).groups()
         print(name, cam)
 

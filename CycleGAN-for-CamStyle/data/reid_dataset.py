@@ -14,6 +14,7 @@ class ReidDataset(BaseDataset):
         self.root = opt.dataroot
         self.subset = opt.subset if opt.subset else 'bounding_box_train'
         self.dir = os.path.join(opt.dataroot, self.subset)
+        self.fname_pattern = r'([-\d]+)_c(\d)'
 
         if self.opt.isTrain:
             self.A_paths = self.preprocess(self.dir, cam_id=int(opt.camA))
@@ -27,7 +28,7 @@ class ReidDataset(BaseDataset):
         self.transform = get_transform(opt)
 
     def preprocess(self, path, cam_id=1, extra_cam_id=-1):
-        pattern = re.compile(r'([-\d]+)_c(\d)')
+        pattern = re.compile(self.fname_pattern)
         ret = []
         fpaths = sorted(glob(osp.join(path, '*.jpg')))
         for fpath in fpaths:
