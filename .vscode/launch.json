@@ -45,6 +45,7 @@
                 "--dataroot", "D:\\datasets\\Market-1501-v15.09.15",
                 "--name", "market-c1-c2",
                 "--checkpoints_dir", "D:\\results\\debug\\camstyle_train_market",
+                "--save_root", "D:\\results\\debug\\camstyle_gen_market\\query",
                 "--camA", "1",
                 "--camB", "2",
                 "--subset", "query",

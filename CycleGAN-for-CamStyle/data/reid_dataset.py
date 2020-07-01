@@ -20,8 +20,8 @@ class ReidDataset(BaseDataset):
             self.A_paths = self.preprocess(self.dir, cam_id=int(opt.camA))
             self.B_paths = self.preprocess(self.dir, cam_id=int(opt.camB))
         else:
-            self.A_paths = self.preprocess(self.dir, cam_id=int(opt.camA), extra_cam_id=opt.camB)
-            self.B_paths = self.preprocess(self.dir, cam_id=int(opt.camA), extra_cam_id=opt.camB)
+            self.A_paths = self.preprocess(self.dir, cam_id=int(opt.camA))#, extra_cam_id=int(opt.camB))
+            self.B_paths = self.preprocess(self.dir, cam_id=int(opt.camB))#, extra_cam_id=int(opt.camA))
 
         self.A_size = len(self.A_paths)
         self.B_size = len(self.B_paths)
