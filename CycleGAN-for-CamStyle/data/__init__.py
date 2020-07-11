@@ -26,6 +26,9 @@ def CreateDataset(opt):
     elif opt.dataset_mode == 'chokepoint':
         from data.chokepoint import ChokePoint
         dataset = ChokePoint()
+    elif opt.dataset_mode == 'coxfacedb':
+        from data.coxfacedb import CoxFaceDB
+        dataset = CoxFaceDB()
     else:
         raise ValueError("Dataset [%s] not recognized." % opt.dataset_mode)
 
