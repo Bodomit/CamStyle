@@ -34,7 +34,7 @@ def save_images(visuals, image_path, camA=1, camB=2, save_root=None, fname_patte
         import re
         #pattern = re.compile(r'([-\d]+)_c(\d)')
         pattern = re.compile(fname_pattern)
-        pid, cam = pattern.search(name).groups()
+        cam, pid,  = pattern.search(image_path[0]).groups()
         print(name, cam)
 
         if not (cam == camA and label == 'fake_B') and not (cam == camB and label == 'fake_A'):

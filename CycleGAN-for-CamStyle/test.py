@@ -29,5 +29,13 @@ if __name__ == '__main__':
         if i % 5 == 0:
             print('processing (%04d)-th image.' % (i))
         for img_path in set.union(set(data["A_paths"]), set(data["B_paths"])):
-            save_images(visuals, [img_path], opt.camA, opt.camB, opt.save_root,
+
+            if opt.maintain_dir_structure:
+                save_dir = os.path.join(
+                    opt.save_root,
+                    os.path.relpath(os.path.dirname(img_path), opt.dataroot))
+            else:
+                save_dir = opt.save_dir
+
+            save_images(visuals, [img_path], opt.camA, opt.camB, save_dir,
                         fname_pattern=dataset.dataset.fname_pattern)

@@ -5,6 +5,40 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Train - ChokePoint (c1-c2)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/train.py",
+            "args": [
+                "--dataroot", "D:\\datasets\\chokepoint_png",
+                "--name", "chokepoint-c1-c2",
+                "--checkpoints_dir", "D:\\results\\debug\\camstyle_train_chokepoint",
+                "--camA", "C1",
+                "--camB", "C2",
+                "--dataset_mode", "chokepoint",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test - ChokePoint (c1-c2)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/test.py",
+            "args": [
+                "--dataroot", "D:\\datasets\\chokepoint_png",
+                "--name", "chokepoint-c1-c2",
+                "--checkpoints_dir", "D:\\results\\debug\\camstyle_train_chokepoint",
+                "--save_root", "D:\\results\\debug\\camstyle_chokepoint_gen",
+                "--camA", "C1",
+                "--camB", "C2",
+                "--dataset_mode", "chokepoint",
+                "--maintain-dir-structure",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Gen: MMF6-Pairs-10-Ato1-Bidi",
             "type": "python",
             "request": "launch",

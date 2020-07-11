@@ -11,5 +11,6 @@ class TestOptions(BaseOptions):
         parser.add_argument('--which_epoch', type=str, default='latest', help='which epoch to load? set to latest to use latest cached model')
         parser.add_argument('--how_many', type=int, default=50, help='how many test images to run')
         parser.add_argument('--save_root', type=str, default='results/market/bounding_box_train_camstyle')
+        parser.add_argument('--maintain-dir-structure', action="store_true")
         self.isTrain = False
         return parser
