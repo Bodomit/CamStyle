@@ -47,6 +47,8 @@ class BaseOptions():
         parser.add_argument('--camA', default=None, help='cam A.')
         parser.add_argument('--camB', default=None, help='cam B.')
         parser.add_argument('--debug', action='store_true', help='If set, runs everything sequentially to aid with debugging.')
+        parser.add_argument('--coxfacedb-partition-dir', default=None, type=str)
+        parser.add_argument('--coxfacedb-partition', default=None, type=int)
         self.initialized = True
         return parser
 
