@@ -31,6 +31,8 @@ class CoxFaceDB(BaseDataset):
         self.B_size = len(self.B_paths)
         self.transform = get_transform(opt)
 
+        self.fname_pattern = r"(\d+)_(\d+|frontal).+[.jpg|.JPG]$"
+
     def __getitem__(self, index):
         A_path = self.A_paths[index % self.A_size]
         if self.opt.serial_batches:

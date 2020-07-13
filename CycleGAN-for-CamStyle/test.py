@@ -38,4 +38,5 @@ if __name__ == '__main__':
                 save_dir = opt.save_dir
 
             save_images(visuals, [img_path], opt.camA, opt.camB, save_dir,
-                        fname_pattern=dataset.dataset.fname_pattern)
+                        fname_pattern=dataset.dataset.fname_pattern,
+                        cam_prefix=opt.cam_prefix)

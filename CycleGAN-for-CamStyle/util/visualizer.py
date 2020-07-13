@@ -18,7 +18,7 @@ def mkdir_if_missing(dir_path):
 
 
 # save image to the disk
-def save_images(visuals, image_path, camA=1, camB=2, save_root=None, fname_pattern=r'^([\d]+)_([\w])_)'):
+def save_images(visuals, image_path, camA=1, camB=2, save_root=None, fname_pattern=r'^([\d]+)_([\w])_)', cam_prefix=None):
     mkdir_if_missing(save_root)
     short_path = ntpath.basename(image_path[0])
     name = os.path.splitext(short_path)[0]
@@ -34,7 +34,20 @@ def save_images(visuals, image_path, camA=1, camB=2, save_root=None, fname_patte
         import re
         #pattern = re.compile(r'([-\d]+)_c(\d)')
         pattern = re.compile(fname_pattern)
-        cam, pid,  = pattern.search(image_path[0]).groups()
+
+        try:
+            cam, pid,  = pattern.search(image_path[0]).groups()
+        except AttributeError:
+            print("Pattern: ", fname_pattern)
+            print("Path: ", image_path[0])
+            raise
+
+        if cam == "frontal":
+            cam = "0"
+
+        if cam_prefix:
+            cam = cam_prefix + cam
+
         print(name, cam)
 
         if not (cam == camA and label == 'fake_B') and not (cam == camB and label == 'fake_A'):

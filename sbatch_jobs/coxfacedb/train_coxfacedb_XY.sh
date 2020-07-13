@@ -17,12 +17,12 @@ echo "cam-b=$camB"
 cd CycleGAN-for-CamStyle
 pwd
 
-python train.py --dataroot ~/sharedscratch/datasets/coxfacedb/data2/original_still_video/video/ \
-                --name "coxfacedb-$camA-$camB" --camA $camA --camB $camB \
-                --dataset_mode coxfacedb \
-                --checkpoints_dir ~/sharedscratch/results/camstyle_coxfacedb/camstyle_train_coxfacedb/ \
-                --coxfacedb-partition-dir ~/sharedscratch/datasets/coxfacedb/test_file/V2S_partitions \
-                --coxfacedb-partition 0
+# python train.py --dataroot ~/sharedscratch/datasets/coxfacedb/data2/original_still_video/video/ \
+#                 --name "coxfacedb-$camA-$camB" --camA $camA --camB $camB \
+#                 --dataset_mode coxfacedb \
+#                 --checkpoints_dir ~/sharedscratch/results/camstyle_coxfacedb/camstyle_train_coxfacedb/ \
+#                 --coxfacedb-partition-dir ~/sharedscratch/datasets/coxfacedb/test_file/V2S_partitions \
+#                 --coxfacedb-partition 0
 
 python test.py --dataroot ~/sharedscratch/datasets/coxfacedb/data2/original_still_video/video/ \
                --name "coxfacedb-$camA-$camB" --camA $camA --camB $camB \
@@ -32,5 +32,6 @@ python test.py --dataroot ~/sharedscratch/datasets/coxfacedb/data2/original_stil
                --maintain-dir-structure \
                --coxfacedb-partition-dir ~/sharedscratch/datasets/coxfacedb/test_file/V2S_partitions \
                --coxfacedb-partition 0
+               --cam-prefix cam
 
 
