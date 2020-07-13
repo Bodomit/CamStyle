@@ -36,7 +36,7 @@ def save_images(visuals, image_path, camA=1, camB=2, save_root=None, fname_patte
         pattern = re.compile(fname_pattern)
 
         try:
-            cam, pid,  = pattern.search(image_path[0]).groups()
+            pid, cam,  = pattern.search(image_path[0]).groups()
         except AttributeError:
             print("Pattern: ", fname_pattern)
             print("Path: ", image_path[0])

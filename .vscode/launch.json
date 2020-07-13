@@ -23,6 +23,26 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Gen - COXFaceDB (0-1)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/CycleGAN-for-CamStyle/test.py",
+            "args": [
+                "--dataroot", "D:\\datasets\\coxfacedb\\data2\\original_still_video\\video",
+                "--save_root", "D:\\results\\debug\\camstyle_gen_coxfacedb",
+                "--name", "coxfacedb-cam0-cam1",
+                "--camA", "cam0",
+                "--camB", "cam1",
+                "--checkpoints_dir", "D:\\results\\debug\\camstyle_train_coxfacedb",
+                "--dataset_mode", "coxfacedb",
+                "--coxfacedb-partition-dir", "D:\\datasets\\coxfacedb\\test_file\\V2S partitions",
+                "--coxfacedb-partition", "0",
+                "--cam-prefix", "cam",
+                "--debug"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Train - ChokePoint (c1-c2)",
             "type": "python",
             "request": "launch",

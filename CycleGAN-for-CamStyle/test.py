@@ -35,7 +35,7 @@ if __name__ == '__main__':
                     opt.save_root,
                     os.path.relpath(os.path.dirname(img_path), opt.dataroot))
             else:
-                save_dir = opt.save_dir
+                save_dir = opt.save_root
 
             save_images(visuals, [img_path], opt.camA, opt.camB, save_dir,
                         fname_pattern=dataset.dataset.fname_pattern,
