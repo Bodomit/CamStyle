@@ -30,7 +30,7 @@ python test.py --dataroot ~/sharedscratch/datasets/coxfacedb/data2/original_stil
                --checkpoints_dir ~/sharedscratch/results/camstyle_coxfacedb/camstyle_train_coxfacedb/ \
                --dataset_mode coxfacedb \
                --coxfacedb-partition-dir ~/sharedscratch/datasets/coxfacedb/test_file/V2S_partitions \
-               --coxfacedb-partition 0
+               --coxfacedb-partition 0 \
                --cam-prefix cam
 
 
